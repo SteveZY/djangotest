@@ -120,6 +120,8 @@ def unruly_passengers_csv(request):#csv generator
         writer.writerow([year, num])
 
     return response
+
+from cStringIO import StringIO
 from reportlab import canvas
 def hello_pdf(request):
     # Create the HttpResponse object with the appropriate PDF headers.
@@ -127,7 +129,8 @@ def hello_pdf(request):
     response['Content-Disposition'] = 'attachment; filename=hello.pdf'
 
     # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
+    temp = StringIO()#Use StringIO to store the temp PDF file
+    p = canvas.Canvas(temp)
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
@@ -136,5 +139,7 @@ def hello_pdf(request):
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
+
+    response.write(temp.getvalue())
     return response
 

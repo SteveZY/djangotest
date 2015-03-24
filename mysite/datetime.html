@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>Date and Time</title>
+</head>
+
+<body>
+	{% load poll_extras %}
+    你好, It is now {{ current_date }}.
+    <p>the name should be {{ lowercase_name|lll }} </p>
+    {% upper %}
+    <p>these all should be in uppercase</p>
+    {% endupper %}
+
+</body>
+
+</html>

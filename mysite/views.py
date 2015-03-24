@@ -122,7 +122,7 @@ def unruly_passengers_csv(request):#csv generator
     return response
 
 from cStringIO import StringIO
-from reportlab import canvas
+from reportlab.pdfgen import canvas
 def hello_pdf(request):
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(mimetype='application/pdf')

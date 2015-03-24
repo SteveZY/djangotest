@@ -30,6 +30,8 @@ urlpatterns = patterns('',
 	(r'^about/$', direct_to_template, {'template':'about.html'}),#generic views
 	(r'^about/(\w+)$', about_pages),#generic views
 	(r'^publishers/$', list_detail.object_list, publisher_info),
+	(r'^csv/$', unruly_passengers_csv),
+	(r'^pdf/$', hello_pdf),
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),

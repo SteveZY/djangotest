@@ -93,7 +93,7 @@ def contact_f(request):
     			cd.get('email', 'noreply@example.com'), 
     			['siteowner@example.com'],
     		)
-    		return HttpResponseRedirect('/contact/thanks/')
+    		return HttpResponseRedirect('/contact/thanks/')#error since lack of the url
     else:
         form = ContactForm(initial = {'subject':'I love your site!'})
 
@@ -101,6 +101,7 @@ def contact_f(request):
         {'form': form},context_instance = RequestContext(request))
 
 def about_pages(request,page):
+    request.session['f_color']='blue'
     try:
         return direct_to_template(request, template="about/%s.html" % page)
     except TemplateDoesNotExist:

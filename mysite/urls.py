@@ -7,6 +7,8 @@ from django.contrib import admin
 from django.views.generic.simple import direct_to_template
 from django.views.generic import list_detail
 from mysite.books.models import Publisher, Book
+from mysite.myfeeds import *
+
 admin.autodiscover()
 
 publisher_info = {
@@ -18,6 +20,12 @@ publisher_info = {
 book_info = {
 	'queryset': Book.objects.order_by('-publication_date'),
 }
+
+feeds = {
+    'latest': LatestEntries,
+    #'categories': LatestEntriesByCategory, #no code yet
+}
+
 urlpatterns = patterns('',
 	(r'^hello/$',hi),
 	(r'^time/$', current_datetime),
@@ -32,6 +40,9 @@ urlpatterns = patterns('',
 	(r'^publishers/$', list_detail.object_list, publisher_info),
 	(r'^csv/$', unruly_passengers_csv),
 	(r'^pdf/$', hello_pdf),
+	(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',    
+		{'feed_dict': feeds}),#not work since no model yet
+
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),

@@ -22,6 +22,13 @@ for($i=1;$i<=20;$i++){
 	echo '<br />';
 	print_r($yang);
 }
+$str1 = '1234567';
+$num = 123456789;
 
+echo '<br />';
+print_r($str1[4]);
+#$str1[]=',';
+echo number_format($num,0);
+print_r('   '.$str1);
 ?>
 
